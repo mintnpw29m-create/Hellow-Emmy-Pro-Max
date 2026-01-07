@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Secret Birthday 🎂</title>
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:linear-gradient(135deg,#fbc2eb,#a6c1ee);
+  font-family:Arial;
+  text-align:center;
+}
+.screen{display:none;padding-top:120px;}
+.screen.active{display:block;}
+input{padding:12px;font-size:16px;border-radius:10px;border:none;}
+button{padding:12px 25px;border:none;border-radius:12px;
+background:#ff5f9e;color:white;font-size:16px;cursor:pointer;}
+#error{color:red;}
+</style>
+</head>
+
+<body>
+
+<div id="start" class="screen active">
+  <h1>🔐 ใส่รหัสลับ</h1>
+  <input type="password" id="pw" placeholder="รหัสลับ">
+  <br><br>
+  <button onclick="check()">เปิดเซอร์ไพรส์</button>
+  <p id="error"></p>
+</div>
+
+<div id="end" class="screen">
+  <h1>🎂 สุขสันต์วันเกิด!</h1>
+  <p>ขอให้มีความสุขมาก ๆ นะ 💖</p>
+</div>
+
+<script>
+const secret = "150125"; // เปลี่ยนรหัสตรงนี้
+
+function check(){
+  const v = document.getElementById("pw").value;
+  if(v === secret){
+    show("end");
+  }else{
+    document.getElementById("error").innerText="รหัสไม่ถูก ลองใหม่ 💔";
+  }
+}
+function show(id){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+</script>
+
+</body>
+</html>
